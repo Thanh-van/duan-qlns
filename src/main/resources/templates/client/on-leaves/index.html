@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <th:block th:insert="~{ fragments/components :: head }"></th:block>
+    <title>Dashboard</title>
+</head>
+
+<body class="">
+    <div class="wrapper ">
+        <th:block th:insert="~{ fragments/components :: sidebar }"></th:block>
+        <div class="main-panel">
+            <th:block th:insert="~{ fragments/components :: navbar }"></th:block>
+            <div class="content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header d-flex justify-content-between">
+                                <h4 class="card-title"> Đơn xin phép đã gửi của tôi</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead class="text-primary">
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Tiêu đề</th>
+                                                <th>Trạng thái</th>
+                                                <th>Người Duyệt</th>
+                                                <th>Nội Dung Phản Hồi</th>
+                                                <th>Thời gian</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each="onLeave : ${onLeaves}">
+                                                <td th:text="${onLeave.id}"></td>
+                                                <td th:text="${onLeave.title}"></td>
+                                                <td><span class="badge badge-default text-white" th:text="${onLeave.status}"></span></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td th:text="${onLeave.time}"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <th:block th:insert="~{ fragments/components :: footer }"></th:block>
+        </div>
+    </div>
+    <th:block th:insert="~{ fragments/components :: scripts }"></th:block>
+</body>
+
+</html>

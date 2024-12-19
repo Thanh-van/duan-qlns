@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <th:block th:insert="~{ fragments/components :: head }"></th:block>
+    <title>Dashboard</title>
+</head>
+<body class="">
+    <div class="wrapper ">
+        <th:block th:insert="~{ fragments/components :: sidebar }"></th:block>
+        <div class="main-panel">
+            <th:block th:insert="~{ fragments/components :: navbar }"></th:block>
+            <div class="content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header d-flex justify-content-between">
+                                <h4 class="card-title"> Đơn nghỉ phép của nhân viên cấp dưới</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead class=" text-primary">
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Nhân viên</th>
+                                                <th>ngày muốn khôi phục điểm danh</th>
+                                                <th>ngày gửi</th>
+                                                <th>Trạng thái</th>
+                                                <th>Người Duyệt</th>
+                                                <th>Hành động</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each="onLeave : ${onLeaves}">
+                                                <td th:text="${onLeave.id}"></td>
+                                                <td th:text="${onLeave.staff.profile.name}"></td>
+                                                <td th:text="${onLeave.}"></td>
+                                                <td th:text="${onLeave.}"></td>
+                                                <td>12/8/2022</td>
+                                                <td>Trưởng Phòng</td>                                                
+                                                <td>
+                                                    <span class="badge badge-default text-white" th:text="${onLeave.status}"></span>
+                                                </td>
+                                                <td th:text="${onLeave.time}"></td>
+                                                <td th:if="${onLeave.status == 'PENDING'}">
+                                                    <a th:href="@{/dashboard/on-leaves/{id}?type=approve(id=${onLeave.id})}" class="btn btn-sm btn-outline-success">
+                                                        <span>Chấp nhận</span>
+                                                    </a>
+                                                    <a th:href="@{/dashboard/on-leaves/{id}?type=reject(id=${onLeave.id})}" class="btn btn-sm btn-outline-danger">
+                                                        <span>Từ chối</span>
+                                                    </a>
+                                                </td>
+                                                <td th:if="${onLeave.status != 'PENDING'}">
+                                                    <a th:href="@{/dashboard/on-leaves/{id}?type=remove(id=${onLeave.id})}" class="btn btn-sm btn-outline-danger">
+                                                        <span>Xóa</span>
+                                                    </a>
+                                                </td>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <th:block th:insert="~{ fragments/components :: footer }"></th:block>
+        </div>
+    </div>
+    <th:block th:insert="~{ fragments/components :: scripts }"></th:block>
+</body>
+
+</html>

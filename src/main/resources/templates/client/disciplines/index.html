@@ -1,0 +1,48 @@
+<!--
+=========================================================
+* Paper Dashboard 2 - v2.0.1
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/paper-dashboard-2
+* Copyright 2020 Creative Tim (https://www.creative-tim.com)
+
+Coded by www.creative-tim.com
+
+ =========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <th:block th:insert="~{ fragments/components :: head }"></th:block>
+    <title>Dashboard</title>
+</head>
+
+<body class="">
+    <div class="wrapper ">
+        <th:block th:insert="~{ fragments/components :: sidebar }"></th:block>
+        <div class="main-panel">
+            <th:block th:insert="~{ fragments/components :: navbar }"></th:block>
+            <div class="content">
+                <div class="col-md-3" th:each="discipline : ${disciplines}">
+                    <div class="card">
+                        <img class="bg-info px-2" style="width: auto; height: 100px;"
+                            src="https://nimblrschool.com/blog/wp-content/uploads/2020/03/discipline.png"
+                            alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${discipline.title}"></h5>
+                            <p></p>
+                            <p class="card-text" th:text="${discipline.penaltyAmounts}"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <th:block th:insert="~{ fragments/components :: footer }"></th:block>
+        </div>
+    </div>
+    <th:block th:insert="~{ fragments/components :: scripts }"></th:block>
+</body>
+
+</html>

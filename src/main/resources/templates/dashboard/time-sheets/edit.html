@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+
+<body class="">
+    <div class="wrapper ">
+        <div class="main-panel">
+            <div class="content">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="card card-user">
+                            <div class="card-header">
+                                <h5 class="card-title">Chỉnh Sửa Điểm Danh Nhân Viên</h5>
+                            </div>
+                            <div class="card-body">
+                                <form th:action="@{/dashboard/time-sheets/update/{id}(id=${objectSelected.id})}" method="post" th:object="${objectSelected}">
+                                    <div class="row">
+                                        <div class="col-md-3 pr-1">
+                                            <div class="form-group">
+                                                <label>ID (disabled)</label>
+                                                <input type="text" class="form-control" disabled th:field="*{id}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 px-1">
+                                            <div class="form-group">
+                                                <label>Tên Nhân Viên (disabled)</label>
+                                                <input type="text" class="form-control" placeholder="" th:field="*{staff.profile.name}" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 pl-1">
+                                            <div class="form-group">
+                                                <label>Ngày</label>
+                                                <input type="text" class="form-control" placeholder="" th:field="*{date}" 
+                                                 th:placeholder="${#dates.format(objectSelected.date, 'yyyy-MM-dd')}" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 pr-1">
+                                            <div class="form-group">
+                                                <label>Trạng Thái</label>
+                                                <select name="status" class="form-control" th:field="*{status}" required>
+                                                    <option value="0">Có Mặt</option>
+                                                    <option value="1">Vắng Mặt</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="update ml-auto mr-auto">
+                                            <button type="submit" class="btn btn-primary btn-round">Update</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

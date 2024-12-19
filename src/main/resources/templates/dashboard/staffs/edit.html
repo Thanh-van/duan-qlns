@@ -1,0 +1,214 @@
+<!--
+=========================================================
+* Paper Dashboard 2 - v2.0.1
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/paper-dashboard-2
+* Copyright 2020 Creative Tim (https://www.creative-tim.com)
+
+Coded by www.creative-tim.com
+
+ =========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <div th:insert="~{ fragments/components :: head }"></div>
+    <title>Dashboard</title>
+</head>
+
+<body class="">
+    <div class="wrapper ">
+        <div th:insert="~{ fragments/components :: sidebar }"></div>
+        <div class="main-panel">
+            <div th:insert="~{ fragments/components :: navbar }"></div>
+            <div class="content">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card card-user">
+                            <div class="image">
+                                <img src="/assets/img/damir-bosnjak.jpg" alt="...">
+                            </div>
+                            <div class="card-body">
+                                <div class="author">
+                                    <a href="#">
+                                        <img class="avatar border-gray" src="https://cdn-icons-png.flaticon.com/512/8767/8767823.png" alt="...">
+                                        <h5 class="title" th:text="${objectSelected.profile.name}"></h5>
+                                    </a>
+                                    <p class="description" th:text="${'@' + objectSelected.username}"></p>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <hr>
+                                <div class="button-container">
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-6 col-6 ml-auto">
+                                            <h5><span th:text="${#lists.size(objectSelected.felicitations)}"></span><br><small>Lượt khen thưởng</small></h5>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6 col-6 ml-auto mr-auto">
+                                            <h5><span th:text="${#lists.size(objectSelected.disciplines)}"></span><br><small>Lượt chỉ trích</small></h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card card-user">
+                            <div class="card-header">
+                                <h5 class="card-title">Chỉnh sửa hồ sơ</h5>
+                            </div>
+                            <div class="card-body">
+                                <form method="post" th:action="@{/dashboard/staffs/update/{id}(id = ${objectSelected.id})}" th:object="${objectSelected}">
+                                    <div class="row">
+                                        <div class="col-md-3 pr-1">
+                                            <div class="form-group">
+                                                <label>ID (disabled)</label>
+                                                <input type="text" class="form-control" disabled="" th:field="*{id}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 px-1">
+                                            <div class="form-group">
+                                                <label>Phòng ban</label>
+                                                <select class="form-control" th:field="*{department.id}">
+                                                    <option th:each="item : ${departments}" th:value="${item.id}" th:text="${item.name}"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 px-1">
+                                            <div class="form-group">
+                                                <label>Tên đăng nhập (disabled)</label>
+                                                <input type="text" class="form-control" placeholder="" th:field="*{username}" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 pl-1">
+                                            <div class="form-group">
+                                                <label>Mật khẩu</label>
+                                                <input type="password" class="form-control" placeholder="" th:field="*{password}" minlength="3" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4 pr-1">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Email</label>
+                                                <input type="email" class="form-control" placeholder="" th:field="*{profile.email}" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 px-1">
+                                            <div class="form-group">
+                                                <label>Họ tên</label>
+                                                <input type="text" class="form-control" placeholder="" th:field="*{profile.name}" minlength="6" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 pl-1">
+                                            <div class="form-group">
+                                                <label>Giới tính</label>
+                                                <select name="gender" class="form-control" id="" th:field="*{profile.gender}" required>
+                                                    <option value="male">Male</option>
+                                                    <option value="female">Female</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Địa chỉ</label>
+                                                <input type="text" class="form-control" placeholder="" th:field="*{profile.address}" minlength="10" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 pr-1">
+                                            <div class="form-group">
+                                                <label>Kinh nghiệm làm việc</label>
+                                                <select name="experience" class="form-control" id="" th:field="*{profile.experience}" required>
+                                                    <option value="0">Dưới 1 năm</option>
+                                                    <option value="1">1 năm</option>
+                                                    <option value="2">2 năm</option>
+                                                    <option value="3">3 năm</option>
+                                                    <option value="4">4 năm</option>
+                                                    <option value="5">5 năm</option>
+                                                    <option value="6">6 năm</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 pl-1">
+                                            <div class="form-group">
+                                                <label>Trình độ học vấn</label>
+                                                <select name="academic_level" class="form-control" id="" th:field="*{profile.academicLevel}" required>
+                                                    <option value="KHONG_CO">Không có học vấn</option>
+                                                    <option value="TRUNG_HOC">Trung học</option>
+                                                    <option value="CAO_DANG">Cao đẳng</option>
+                                                    <option value="DAI_HOC">Đại học</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4 pr-1">
+                                            <div class="form-group">
+                                                <label>Số điện thoại</label>
+                                                <input type="number" class="form-control" th:field="*{profile.tel}" pattern="[0-9]{10,12}" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 px-1">
+                                            <div class="form-group">
+                                                <label>Vị trí</label>
+                                                <select name="position" class="form-control" id="" th:field="*{position}" required>
+                                                    <option value="STAFF">Nhân viên</option>
+                                                    <option value="LEADER">Trưởng phòng</option>
+                                                    <option value="ADMIN">Admin</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 pl-1">
+                                            <div class="form-group">
+                                                <label>Lương cơ bản</label>
+                                                <input type="number" class="form-control" placeholder="" th:field="*{salary}" min="100000" max="500000" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4 pl-1">
+                                            <div class="form-group">
+                                                <label>CCCD</label>
+                                                <input type="number" class="form-control" placeholder="" min="8" th:field="*{profile.CCCD}" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 pl-1">
+                                            <div class="form-group">
+                                                <label>BHXH</label>
+                                                <input type="number" class="form-control" placeholder="" min="8" th:field="*{profile.BHXH}" required>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="col-md-4 pl-1">
+                                            <div class="form-group">
+                                                <label>Ngày vào Làm</label>
+                                                <input type="date" class="form-control" placeholder="" th:field="*{profile.join_date}" th:if="${profile.join_date != null}"  required>
+
+                                            </div>
+                                        </div> -->
+                                    </div>
+                                    <div class="row">
+                                        <div class="update ml-auto mr-auto">
+                                            <button type="submit" class="btn btn-primary btn-round">Update</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div th:insert="~{ fragments/components :: footer }"></div>
+        </div>
+    </div>
+    <div th:insert="~{ fragments/components :: scripts }"></div>
+</body>
+
+</html>

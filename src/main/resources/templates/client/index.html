@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <th:block th:insert="~{ fragments/components :: head }"></th:block>
+    <title>Dashboard</title>
+</head>
+
+<body class="">
+    <div class="wrapper ">
+        <th:block th:insert="~{ fragments/components :: sidebar }"></th:block>
+        <div class="main-panel">
+            <th:block th:insert="~{ fragments/components :: navbar }"></th:block>
+            <div class="content">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1">
+                    Xin nghỉ phép
+                </button>
+                <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <form action="/client/take-leave" method="post">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Đơn xin nghỉ phép</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label>lý do xin nghỉ</label>
+                                        <textarea name="content" class="form-control" cols="30" rows="5" minlength="5" required></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                      <label>Loại Nghĩ Phép</label>
+                                      <select name="model" id="" class="form-control">
+                                        <option value="">Ngắn Hạn</option>
+                                        <option value="">Dài Hạn</option>
+                                      </select>
+                                      
+                                    </div>
+                                    <div class="form-group">
+                                      <label>Ngày Bắt Đầu</label>
+                                      <input type="text" name="startAT" id="" class="form-control" placeholder="YYYY-MM-DD" required>
+                                      
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Ngày Bắt Đầu</label>
+                                        <input type="text" name="endAT" id="" class="form-control" placeholder="YYYY-MM-DD" required>
+                                        
+                                      </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy bỏ</button>
+                                    <button type="submit" class="btn btn-primary text-white">GỬI ĐƠN</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header d-flex justify-content-between">
+                                <h4 class="card-title"> Bảng điểm danh của tôi - Tổng cộng: <span th:text="${#lists.size(timeSheets) + ' ngày'}"></span></h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead class="text-primary">
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Trạng thái</th>
+                                                <th>Thời gian</th>
+                                                <th>Người điểm danh</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each="timeSheet : ${timeSheets}">
+                                                <td th:text="${timeSheet.id}"></td>
+                                                <td><span class="badge badge-success" th:text="${timeSheet.status}"></span></td>
+                                                <td th:text="${timeSheet.date}"></td>
+                                                <td>Giám Đốc</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <th:block th:insert="~{ fragments/components :: footer }"></th:block>
+        </div>
+    </div>
+    <th:block th:insert="~{ fragments/components :: scripts }"></th:block>
+</body>
+
+</html>

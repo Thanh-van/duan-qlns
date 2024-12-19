@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <th:block th:insert="~{ fragments/components :: head }"></th:block>
+    <title>Dashboard</title>
+</head>
+
+<body class="">
+    <div class="wrapper ">
+        <th:block th:insert="~{ fragments/components :: sidebar }"></th:block>
+        <div class="main-panel">
+            <th:block th:insert="~{ fragments/components :: navbar }"></th:block>
+            <div class="content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header d-flex justify-content-between">
+                                <h4 class="card-title"> Kỷ luật</h4>
+                                <a href="/dashboard/disciplines/new" class="btn btn-primary">Thêm mới</a>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead class=" text-primary">
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Nội Dung kỷ luật</th>
+                                                <th>số tiền trừ</th>
+                                                <th>Nhân viên</th>
+                                                <th>Thời gian</th>
+                                                <th>Hành động</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each="discipline : ${disciplines}">
+                                                <td th:text="${discipline.id}"></td>
+                                                <td th:text="${discipline.title}"></td>
+                                                <td th:text="${discipline.content}"></td>
+                                                <td th:text="${discipline.staff.profile.name}"></td>
+                                                <td th:text="${discipline.time}"></td>
+                                                <td>
+                                                    <a th:href="@{/dashboard/disciplines/{id}?type=remove(id=${discipline.id})}" class="btn btn-sm btn-outline-danger">
+                                                        <span>Xóa bỏ</span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <th:block th:insert="~{ fragments/components :: footer }"></th:block>
+        </div>
+    </div>
+    <th:block th:insert="~{ fragments/components :: scripts }"></th:block>
+</body>
+
+</html>

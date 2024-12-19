@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <th:block th:insert="~{ fragments/components :: head }"></th:block>
+    <title>Dashboard</title>
+</head>
+
+<body class="">
+    <div class="wrapper ">
+        <th:block th:insert="~{ fragments/components :: sidebar }"></th:block>
+        <div class="main-panel">
+            <th:block th:insert="~{ fragments/components :: navbar }"></th:block>
+            <div class="content">
+                <div class="row">
+                    
+                    <div class="col-md-12">
+                        <div class="card card-user">
+                            <div class="card-header">
+                                <h5 class="card-title">Khen thưởng nhân viên</h5>
+                            </div>
+                            <div class="card-body">
+                                <form method="post" action="/leader/felicitations/add">
+                                    <div class="row">
+                                        <div class="col-md-3 pr-1">
+                                            <div class="form-group">
+                                                <label>Chọn nhân viên</label>
+                                                <input class="form-control" list="datalistOptions" name="staff_id" required>
+                                                <datalist id="datalistOptions">
+                                                    <option th:each="staff : ${staffs}" th:value="${staff.id}" th:text="${staff.profile.name}"></option>
+                                                  </datalist>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-9 pl-1">
+                                            <div class="form-group">
+                                                <label>Tiêu đề </label>
+                                                <input type="text" name="title" class="form-control" minlength="10" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Nội dung khen thưởng</label>
+                                                <textarea class="form-control" name="content" minlength="30" id="" cols="30" rows="10"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="update ml-auto mr-auto">
+                                            <button type="submit" class="btn btn-primary btn-round">Save</button>
+                                        </div>
+                                    </div>
+                                    <div class="alert alert-danger" th:if="${error != null}" th:text="${error}">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <th:block th:insert="~{ fragments/components :: footer }"></th:block>
+        </div>
+    </div>
+    <th:block th:insert="~{ fragments/components :: scripts }"></th:block>
+</body>
+
+</html>

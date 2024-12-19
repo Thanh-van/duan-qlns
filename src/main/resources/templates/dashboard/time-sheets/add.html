@@ -1,0 +1,86 @@
+<!--
+=========================================================
+* Paper Dashboard 2 - v2.0.1
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/paper-dashboard-2
+* Copyright 2020 Creative Tim (https://www.creative-tim.com)
+
+Coded by www.creative-tim.com
+
+ =========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <th:block th:insert="~{ fragments/components :: head }"></th:block>
+    <title>Dashboard</title>
+</head>
+
+<body class="">
+    <div class="wrapper ">
+        <th:block th:insert="~{ fragments/components :: sidebar }"></th:block>
+        <div class="main-panel">
+            <th:block th:insert="~{ fragments/components :: navbar }"></th:block>
+            <div class="content">
+                <div class="row">
+                    
+                    <div class="col-md-12">
+                        <div class="card card-user">
+                            <div class="card-header">
+                                <h5 class="card-title">Điểm Danh Nhân Viên</h5>
+                            </div>
+                            <div class="card-body">
+                                <form method="post" action="/dashboard/time-sheets/add">
+                                    <div class="row">
+                                        <div class="col-md-3 pr-1">
+                                            <div class="form-group">
+                                                <label>Chọn nhân viên</label>
+                                                <input class="form-control" list="datalistOptions" name="staff_id" required>
+                                                <datalist id="datalistOptions">
+                                                    <option th:each="staff : ${staffs}" th:value="${staff.id}" th:text="${staff.profile.name}"></option>
+                                                  </datalist>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Ngày</label>
+                                                    <input type="text" name="Date" class="form-control" placeholder="YYYY-MM-DD">
+                                                </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Trạng Thái</label>
+                                                <select name="status" class="form-control" required>
+                                                    <option value="1">Có Mặt</option>
+                                                    <option value="2">Vắng Mặt</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="update ml-auto mr-auto">
+                                            <button type="submit" class="btn btn-primary btn-round">Save</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <th:block th:insert="~{ fragments/components :: footer }"></th:block>
+        </div>
+    </div>
+    <th:block th:insert="~{ fragments/components :: scripts }"></th:block>
+</body>
+
+</html>

@@ -1,0 +1,185 @@
+<!--
+=========================================================
+* Paper Dashboard 2 - v2.0.1
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/paper-dashboard-2
+* Copyright 2020 Creative Tim (https://www.creative-tim.com)
+
+Coded by www.creative-tim.com
+
+ =========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <th:block th:insert="~{ fragments/components :: head }"></th:block>
+    <title>Dashboard</title>
+</head>
+
+<body class="">
+    <div class="wrapper ">
+        <th:block th:insert="~{ fragments/components :: sidebar }"></th:block>
+        <div class="main-panel">
+            <th:block th:insert="~{ fragments/components :: navbar }"></th:block>
+            <div class="content">
+                <div class="row">
+                    
+                    <div class="col-md-12">
+                        <div class="card card-user">
+                            <div class="card-header">
+                                <h5 class="card-title">Thêm Nhân Viên</h5>
+                            </div>
+                            <div class="card-body">
+                                <form method="post" action="/dashboard/staffs/add">
+                                    <div class="row">
+                                        <div class="col-md-3 pr-1">
+                                            <div class="form-group">
+                                                <label>ID (disabled)</label>
+                                                <input type="text" class="form-control" disabled="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 pr-1">
+                                            <div class="form-group">
+                                                <label>Phòng ban</label>
+                                                <select name="department_id" class="form-control" id="" required>
+                                                    <option th:each="item : ${departments}" th:value="${item.id}" th:text="${item.name}"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 px-1">
+                                            <div class="form-group">
+                                                <label>Tên đăng nhập </label>
+                                                <input type="text" name="username" class="form-control" placeholder="" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 pl-1">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Mật khẩu</label>
+                                                <input type="password" name="password" class="form-control" placeholder="" minlength="3" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4 pr-1">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Email</label>
+                                                <input type="email" name="email" class="form-control" placeholder="" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 pr-1">
+                                            <div class="form-group">
+                                                <label>Họ tên</label>
+                                                <input type="text" name="name" class="form-control" placeholder="" minlength="6" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 pl-1">
+                                            <div class="form-group">
+                                                <label>Giới tính</label>
+                                                <select name="gender" class="form-control" id="" required>
+                                                    <option value="male">Male</option>
+                                                    <option value="female">Female</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Địa chỉ</label>
+                                                <input type="text" name="address" class="form-control" placeholder="" minlength="10" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 pr-1">
+                                            <div class="form-group">
+                                                <label>Kinh nghiệm làm việc</label>
+                                                <select name="experience" class="form-control" id="" required>
+                                                    <option value="0">Dưới 1 năm</option>
+                                                    <option value="1">1 năm</option>
+                                                    <option value="2">2 năm</option>
+                                                    <option value="3">3 năm</option>
+                                                    <option value="4">4 năm</option>
+                                                    <option value="5">5 năm</option>
+                                                    <option value="6">6 năm</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 pl-1">
+                                            <div class="form-group">
+                                                <label>Trình độ học vấn</label>
+                                                <select name="academic_level" class="form-control" id="" required>
+                                                    <option value="KHONG_CO">Không có học vấn</option>
+                                                    <option value="TRUNG_HOC">Trung học</option>
+                                                    <option value="CAO_DANG">Cao đẳng</option>
+                                                    <option value="DAI_HOC">Đại học</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4 pr-1">
+                                            <div class="form-group">
+                                                <label>Số điện thoại</label>
+                                                <input type="number" name="tel" class="form-control" pattern="[0-9]{10-12}" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 px-1">
+                                            <div class="form-group">
+                                                <label>Chức Vụ</label>
+                                                <select name="position" class="form-control" id="" required>
+                                                    <option value="STAFF">Nhân viên</option>
+                                                    <option value="LEADER">Trưởng phòng</option>
+                                                    <option value="ADMIN">Admin</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 pl-1">
+                                            <div class="form-group">
+                                                <label>Lương</label>
+                                                <input type="number" name="salary" value="" class="form-control" placeholder="Lương...">
+                                            </div>
+                                        </div>
+                                            <div class="col-md-4 pl-1">
+                                                <div class="form-group">
+                                                    <label>CCCD</label>
+                                                    <input type="number" name="CCCD" class="form-control" placeholder="" min="8">
+                                                </div>
+                                            
+                                            </div>
+                                                <div class="col-md-4 pl-1">
+                                                    <div class="form-group">
+                                                        <label>BHXH</label>
+                                                        <input type="number" name="BHXH" class="form-control" placeholder="" min="8">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 pl-1">
+                                                    <div class="form-group">
+                                                        <label>Ngày Vào Làm</label>
+                                                        <input type="date" name="join_date" class="form-control" placeholder="YYYY-MM-DD>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="update ml-auto mr-auto">
+                                            <button type="submit" class="btn btn-primary btn-round">Save</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <th:block th:insert="~{ fragments/components :: footer }"></th:block>
+        </div>
+    </div>
+    <th:block th:insert="~{ fragments/components :: scripts }"></th:block>   
+</body>
+
+</html>

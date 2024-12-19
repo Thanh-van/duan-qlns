@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <th:block th:insert="~{ fragments/components :: head }"></th:block>
+    <title>Dashboard</title>
+</head>
+
+<body class="">
+    <div class="wrapper ">
+        <th:block th:insert="~{ fragments/components :: sidebar }"></th:block>
+        <div class="main-panel">
+            <th:block th:insert="~{ fragments/components :: navbar }"></th:block>
+            <div class="content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header d-flex justify-content-between">
+                                <h4 class="card-title"> Bảng chấm công nhân viên</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead class=" text-primary">
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Nhân viên</th>
+                                            
+                                                <th>Ngày</th>
+                                                <th>Trạng Thái</th>
+                                                <th>Hành động</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each="timeSheet : ${timeSheets}">
+                                                <td th:text="${timeSheet.id}"></td>
+                                                <td th:text="${time.staff.profile.name}"></td>
+                                                
+                                                <td th:text="${timesheet.date}"></td>
+                                                <td th:text="${timesheet.status}"></td>
+                                                <td class="">
+                                                    <a th:href="@{timeSheets/{id}/?type=edit(id=${timeSheet.id})}" class="btn btn-sm btn-outline-success">
+                                                        <span>Edit</span>
+                                                    </a>
+                                                    <a th:href="@{staffs/{id}/?type=remove(id=${timeSheet.id})}" class="btn btn-sm btn-outline-danger">
+                                                        <span>Remove</span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <th:block th:insert="~{ fragments/components :: footer }"></th:block>
+        </div>
+    </div>
+    <th:block th:insert="~{ fragments/components :: scripts }"></th:block>
+</body>
+
+</html>

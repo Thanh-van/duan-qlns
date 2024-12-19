@@ -1,0 +1,81 @@
+<!--
+=========================================================
+* Paper Dashboard 2 - v2.0.1
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/paper-dashboard-2
+* Copyright 2020 Creative Tim (https://www.creative-tim.com)
+
+Coded by www.creative-tim.com
+
+ =========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <th:block th:insert="~{ fragments/components :: head }"></th:block>
+    <title>Dashboard</title>
+</head>
+
+<body class="">
+    <div class="wrapper ">
+        <th:block th:insert="~{ fragments/components :: sidebar }"></th:block>
+        <div class="main-panel">
+            <th:block th:insert="~{ fragments/components :: navbar }"></th:block>
+            <div class="content">
+                <div class="row">
+                    
+                    <div class="col-md-12">
+                        <div class="card card-user">
+                            <div class="card-header">
+                                <h5 class="card-title">Thêm tổng công tháng cho nhân viên</h5>
+                            </div>
+                            <div class="card-body">
+                                <form method="post" action="/dashboard/totalMonthlyWork/add">
+
+                                   <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                          <label>Tháng</label>
+                                          <input type="month" name="" id="" class="form-control" placeholder="Chọn Tháng" required>
+                                        </div>
+                                    </div>
+                                   </div>
+                                    <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                          <label>Số ngày làm việc</label>
+                                          <input type="number" name="" id="" class="form-control" placeholder="Vui Lòng Nhập Số Ngày Làm Việc" aria-describedby="helpId">
+                                        </div>
+                                    </div>
+                                   </div>
+                                   <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                          <label>Số ngày nghĩ</label>
+                                          <input type="number" name="" id="" class="form-control" placeholder="Vui Lòng Nhập Số Ngày Nghĩ" aria-describedby="helpId">
+                                        </div>
+                                    </div>
+                                   </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="update ml-auto mr-auto">
+                                            <button type="submit" class="btn btn-primary btn-round">Save</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <th:block th:insert="~{ fragments/components :: footer }"></th:block>
+        </div>
+    </div>
+    <th:block th:insert="~{ fragments/components :: scripts }"></th:block>
+</body>
+
+</html>

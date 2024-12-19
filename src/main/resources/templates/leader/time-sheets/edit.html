@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <th:block th:insert="~{ fragments/components :: head }"></th:block>
+    <title>Dashboard</title>
+</head>
+
+<body class="">
+    <div class="wrapper ">
+        <th:block th:insert="~{ fragments/components :: sidebar }"></th:block>
+        <div class="main-panel">
+            <th:block th:insert="~{ fragments/components :: navbar }"></th:block>
+            <div class="content">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="card card-user">
+                            <div class="card-header">
+                                <h5 class="card-title">Chỉnh Sửa Điểm Danh Nhân Viên</h5>
+                            </div>
+                            <div class="card-body">
+                                <form method="post" th:action="@{/leader/time-sheets/update/{id}(id = ${objectSelected.id})}" th:object="${objectSelected}">
+                                    <div class="row">
+                                        <div class="col-md-3 pr-1">
+                                            <div class="form-group">
+                                                <label>ID (disabled)</label>
+                                                <input type="text" class="form-control" disabled="" th:field="*{id}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 px-1">
+                                            <div class="form-group">
+                                                <label>Tên Nhân Viên (disabled)</label>
+                                                <input type="text" class="form-control" placeholder="" th:field="*{timesheet.profile.name}" readonly>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 pl-1">
+                                        <div class="form-group">
+                                                <label>Ngày</label>
+                                                <input type="text" class="form-control" placeholder="" th:field="*{timesheet.date}" 
+                                                 th:placeholder="${#dates.format(timesheet.date, 'yyyy-MM-dd')}" required>
+                                        </div>
+                                            </div>
+                                            
+                                    <div class="row">
+                                        <div class="col-md-6 pr-1">
+                                            <div class="form-group">
+                                                <label>Trạng Thái</label>
+                                                <select name="status" class="form-control" id="" th:field="*{timesheet.status}" required>
+                                                    <option value="0">Có Mặt</option>
+                                                    <option value="1">Vắng Mặt</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                 
+                                    <div class="row">
+                                        <div class="update ml-auto mr-auto">
+                                            <button type="submit" class="btn btn-primary btn-round">Update</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <th:block th:insert="~{ fragments/components :: footer }"></th:block>
+        </div>
+    </div>
+    <th:block th:insert="~{ fragments/components :: scripts }"></th:block>
+   
+    
+</body>
+
+</html>

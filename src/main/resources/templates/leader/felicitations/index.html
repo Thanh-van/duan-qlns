@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <th:block th:insert="~{ fragments/components :: head }"></th:block>
+    <title>Dashboard</title>
+</head>
+
+<body class="">
+    <div class="wrapper ">
+        <th:block th:insert="~{ fragments/components :: sidebar }"></th:block>
+        <div class="main-panel">
+            <th:block th:insert="~{ fragments/components :: navbar }"></th:block>
+            <div class="content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header d-flex justify-content-between">
+                                <h4 class="card-title"> Khen thưởng</h4>
+                                <a href="/leader/felicitations/new" class="btn btn-primary">Thêm mới</a>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead class=" text-primary">
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>nội dung khen thưởng</th>
+                                                <th>số tiền khen thưởng</th>
+                                                <th>Nhân viên</th>
+                                                <th>Ngày Tạo khen thưởng</th>
+                                                <th>Hành động</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each="felicitation : ${felicitations}">
+                                                <td th:text="${felicitation.id}"></td>
+                                                <td th:text="${felicitation.title}"></td>
+                                                <td th:text="${felicitation.}"></td>
+                                                <td th:text="${felicitation.staff.profile.name}"></td>
+                                                <td th:text="${felicitation.time}"></td>
+                                                <td>
+                                                    <a th:href="@{/dashboard/felicitations/{id}?type=remove(id=${felicitation.id})}" class="btn btn-sm btn-outline-danger">
+                                                        <span>Xóa bỏ</span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <th:block th:insert="~{ fragments/components :: footer }"></th:block>
+        </div>
+    </div>
+    <th:block th:insert="~{ fragments/components :: scripts }"></th:block>
+</body>
+
+</html>
